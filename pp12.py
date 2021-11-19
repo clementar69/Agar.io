@@ -24,14 +24,13 @@ def setup():
 
     core.memory("L", 0)
     core.memory("Joueur", Joueur())
-    core.memory("joueur",[])
+
 
     core.memory("Creep", "Creep_n°")
     core.memory("TableauDeCreeps", [])
     for i in range(100):
         core.memory("TableauDeCreeps").append(Creep())
 
-    core.memory("Joueur").append(Joueur())
 
     print("Setup END-----------")
 
@@ -88,9 +87,8 @@ def run():
             i.mourir()
             core.memory("rayonducercle", core.memory("rayonducercle")+1)
 
-    for i in core.memory("Joueur"):
-        if i.position.distance_to(core.memory("centredecercle")) < (core.memory("rayonducercle") + i.rayon):
-            core.memory("rayonducercle", core.memory("rayonducercle") /1.4)
+
+
 
 
 
