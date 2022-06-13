@@ -4,7 +4,7 @@ import pygame
 import random
 
 from Creep import Creep
-from Joueur import Joueur
+from Enemies import Enemies
 
 
 def setup():
@@ -23,13 +23,17 @@ def setup():
     core.memory("l0", 0.2)
 
     core.memory("L", 0)
-    core.memory("Joueur", Joueur())
+    core.memory("Enemies", Enemies())
+    core.memory("TableauDEnemies",[])
+    for o in range(5):
+        core.memory("TableauDEnemies").append(Enemies())
 
 
-    core.memory("Creep", "Creep_n°")
     core.memory("TableauDeCreeps", [])
     for i in range(100):
         core.memory("TableauDeCreeps").append(Creep())
+
+
 
 
     print("Setup END-----------")
@@ -38,9 +42,9 @@ def setup():
 def run():
     core.cleanScreen()
 
-    core.memory("Joueur").deplacement(core.getKeyPressList(pygame.K_z),core.getKeyPressList(pygame.K_s),
-                core.getKeyPressList(pygame.K_q),core.getKeyPressList(pygame.K_d) )
-    core.memory("Joueur").draw(core.screen)
+    for o in core.memory("TableauDEnemies"):
+        pygame.draw.circle(core.screen, o.couleur, o.position ,o.rayon)
+
 
     if core.getKeyPressList(pygame.K_r):
         core.memory("direction", Vector2(0, 0))
@@ -85,9 +89,12 @@ def run():
     for i in core.memory("TableauDeCreeps"):
         if i.position.distance_to(core.memory("centredecercle")) < (core.memory("rayonducercle") +i.rayon):
             i.mourir()
-            core.memory("rayonducercle", core.memory("rayonducercle")+1)
+            core.memory("rayonducercle", core.memory("rayonducercle")+0.5)
 
-
+    for o in core.memory("TableauDEnemies"):
+        if o.position.distance_to(core.memory("centredecercle")) < (core.memory("rayonducercle") +o.rayon):
+            o.mourir()
+            core.memory("rayonducercle", core.memory("rayonducercle") + o.rayon/2.8)
 
 
 
