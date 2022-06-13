@@ -4,7 +4,7 @@ import pygame
 import random
 
 from Creep import Creep
-from Enemies import Enemies
+from Ennemis import Ennemis
 
 
 def setup():
@@ -23,10 +23,10 @@ def setup():
     core.memory("l0", 0.2)
 
     core.memory("L", 0)
-    core.memory("Enemies", Enemies())
-    core.memory("TableauDEnemies",[])
+    core.memory("Ennemis", Ennemis())
+    core.memory("TableauDEnnemis",[])
     for o in range(5):
-        core.memory("TableauDEnemies").append(Enemies())
+        core.memory("TableauDEnnemis").append(Ennemis())
 
 
     core.memory("TableauDeCreeps", [])
@@ -42,7 +42,7 @@ def setup():
 def run():
     core.cleanScreen()
 
-    for o in core.memory("TableauDEnemies"):
+    for o in core.memory("TableauDEnnemis"):
         pygame.draw.circle(core.screen, o.couleur, o.position ,o.rayon)
 
 
@@ -91,7 +91,7 @@ def run():
             i.mourir()
             core.memory("rayonducercle", core.memory("rayonducercle")+0.5)
 
-    for o in core.memory("TableauDEnemies"):
+    for o in core.memory("TableauDEnnemis"):
         if o.position.distance_to(core.memory("centredecercle")) < (core.memory("rayonducercle") +o.rayon):
             o.mourir()
             core.memory("rayonducercle", core.memory("rayonducercle") + o.rayon/2.8)
