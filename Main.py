@@ -1,5 +1,5 @@
 ################################################# ###############################
-# Écrit par : Clément ARCHIMBAUD et Samuel  #
+# Écrit par : Clément ARCHIMBAUD et Samuel Marquat #
 # Me contacter : clement.archimbaud@etu.univ-lyon1.fr #
 # Objectif : Cree le jeu Agar.io #
 # Version : v4 #
